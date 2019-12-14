@@ -1,0 +1,37 @@
+public class Flats {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter entrances count: ");
+        int entrancesCount = scanner.nextInt();
+
+        System.out.print("Enter floors count: ");
+        int floorsCount = scanner.nextInt();
+
+        System.out.print("Enter flats count: ");
+        int flatNumber = scanner.nextInt();
+
+        int flatsOnFloorCount = 4;
+
+        if (flatNumber <= 0 || flatNumber >= flatsOnFloorCount * entrancesCount * floorsCount) {
+            System.out.println("Wrong! Flat from another house");
+        } else {
+            int entranceNumber = (int) Math.ceil((double) flatNumber / (flatsOnFloorCount * floorsCount));
+            int floorNumber = (int) Math.ceil((double) (flatNumber - flatsOnFloorCount * floorsCount * (entranceNumber - 1)) / flatsOnFloorCount);
+            System.out.println("Entrance № " + entranceNumber);
+            System.out.println("Floor - " + floorNumber);
+
+            int flatPosition = flatNumber % flatsOnFloorCount;
+
+            if (flatPosition == 0) {
+                System.out.println("This flat is near rigth");
+            } else if (flatPosition == 1) {
+                System.out.println("This flat is near left");
+            } else if (flatPosition == 2) {
+                System.out.println("This flat is far left");
+            } else {
+                System.out.println("This flat is far rigth");
+            }
+        }
+    }
+}
