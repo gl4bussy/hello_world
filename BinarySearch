@@ -1,0 +1,62 @@
+import java.util.Scanner;
+
+public class BinarySearch {
+    private static int recursiveBinarySearch(int[] array, int left, int right, int searchingNumber) {
+        if (left > right) {
+            return -1;
+        }
+
+        int middle = (left + right) / 2;
+
+        if (searchingNumber == array[middle]) {
+            return middle;
+        }
+
+        if (searchingNumber > array[middle]) {
+            return recursiveBinarySearch(array, middle + 1, right, searchingNumber);
+        } else {
+            return recursiveBinarySearch(array, left, middle - 1, searchingNumber);
+        }
+    }
+
+    private static int binarySearch(int[] array, int searchingNumber) {
+        int left = 0;
+        int right = array.length - 1;
+
+        if (left > right) {
+            return -1;
+        }
+
+        int middle = (left + right) / 2;
+
+        while (searchingNumber != array[middle]) {
+            if (left > right) {
+                return -1;
+            }
+
+            if (searchingNumber > array[middle]) {
+                left = middle + 1;
+            } else {
+                right = middle - 1;
+            }
+            middle = (left + right) / 2;
+        }
+
+        return middle;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int[] array = {5, 7, 12, 33, 50, 111};
+
+        System.out.print("Enter number index for searching: ");
+        int searchingNumber = scanner.nextInt();
+
+        int searchingNumberIndex1 = recursiveBinarySearch(array, 0, array.length - 1, searchingNumber);
+        System.out.println(searchingNumberIndex1);
+
+        int searchingNumberIndex2 = binarySearch(array, searchingNumber);
+        System.out.println(searchingNumberIndex2);
+    }
+}
