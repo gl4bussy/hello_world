@@ -1,0 +1,29 @@
+import java.util.Scanner;
+
+public class FibonacciNumbers {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter serial number: ");
+        int serialNumber = scanner.nextInt();
+
+        int number1 = 0;
+        int number2 = 1;
+
+        if (serialNumber == number1) {
+            System.out.println("Number of Fibbonacci - " + number1);
+        } else if (serialNumber == number2) {
+            System.out.println("Number of Fibbonacci - " + number2);
+        } else {
+            int sum = 0;
+
+            for (int i = 2; i <= serialNumber; i++) {
+                sum = number1 + number2;
+                number1 = number2;
+                number2 = sum;
+            }
+
+            System.out.println("Number of Fibbonacci - " + sum);
+        }
+    }
+}
